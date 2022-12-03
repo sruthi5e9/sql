@@ -1,0 +1,30 @@
+Statement-level triggers – learn how to use statement-level triggers to enforce additional security to the transaction.
+
+
+SYNTAX::
+CREATE [OR REPLACE] TRIGGER Trigger_name 
+ {BEFORE|AFTER} Triggering_event ON table_name 
+ [FOLLOWS another_trigger]
+ [ENABLE/DISABLE]
+ [WHEN condition]
+DECLARE
+ declaration statements
+BEGIN
+ executable statements
+EXCEPTION
+ exception-handling statements
+END;
+
+EXAMPLE::
+CREATE OR REPLACE TRIGGER att_trigger 
+AFTER UPDATE OR DELETE ON attendance
+DECLARE
+v_tbl string(20):='attendance';
+act string(8);
+BEGIN
+CASE  
+    WHEN UPDATING THEN act:='UPDATE';
+    WHEN DELETING THEN act:='DELETE' ;  
+END CASE;
+insert into att_log values(user,SYSTIMESTAMP ,v_tbl,act);
+END;
