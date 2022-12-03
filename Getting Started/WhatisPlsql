@@ -1,0 +1,17 @@
+What is PL/SQL –  introduce you to PL/SQL programming language and its architecture.
+
+PL/SQL or Procedural Language for SQL is an extended version of SQL programming, designed specifically by Oracle for its relational databases, 
+to be programmed alongside SQL and Java. As a programming language, it is derived from SQL and incorporates object-oriented programming (OOPS) concepts such as 
+procedures, functions, loops, conditional statements, etc. 
+Also, this programming language consents to variables & constants declaration, similar to Java and other OOPS based programming languages.
+
+PL/SQL is an extension of SQL that allows developers to combine the power of SQL with procedural statements. 
+Oracle Corporation developed it in the early ’90s. It allows writing a piece of code, including the SQL query in a block (which is the basic unit of it).
+
+It is a high standard and readable language, so it is very easy to understand and learn. 
+It can only be used with Oracle Database Systems and cannot be used as a standalone application like C, C++, Java, etc. 
+It provides the facility to developers to use loops, conditions, object-oriented concepts and SQL like other database languages.
+
+Before this, only one query is sent to the Oracle server, which increases the load and time. 
+But through this, multiple SQL statements are grouped and sent in a single block or subprogram, which increases the processing speed and decreases the traffic on 
+Oracle Server.
