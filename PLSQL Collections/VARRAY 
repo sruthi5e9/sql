@@ -1,0 +1,31 @@
+VARRAY – learn about variable-sized array and how to manipulate its elements effectively.
+
+VARRAY stands for the variable-sized array.
+
+A VARRAY is single-dimensional collections of elements with the same data type. 
+Unlike an associative array and nested table, a VARRAY always has a fixed number of elements(bounded) and never has gaps between the elements (not sparse).
+
+To declare a VARRAY type, syntax:
+
+TYPE type_name IS VARRAY(max_elements)
+    OF element_type [NOT NULL];
+    
+SYNTAX::
+--------
+CREATE [OR REPLACE ] TYPE type_name AS | IS
+    VARRAY(max_elements) OF element_type [NOT NULL];
+
+EXAMPLE::
+---------
+DECLARE
+    TYPE t_name_type IS VARRAY(2) 
+        OF VARCHAR2(20) NOT NULL;
+    t_names t_name_type  := t_name_type('John','Jane');
+    t_enames t_name_type := t_name_type();
+BEGIN
+    -- initialize to an empty array
+    dbms_output.put_line("The number of elements in t_enames " || t_enames.COUNT);
+    
+    -- initialize to an array of a elements 
+    dbms_output.put_line("The number of elements in t_names " || t_names.COUNT);
+END;
