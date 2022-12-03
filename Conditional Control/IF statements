@@ -1,0 +1,19 @@
+IF statements – introduce you various IF statement to either execute or skip a sequence of statements based on a condition.
+
+SET SERVEROUTPUT ON
+DECLARE
+num_small number(3):= &A;
+num_large number(3):= &B;
+num_temp number(3);
+BEGIN
+    IF(num_small > num_large) THEN 
+        num_temp := num_small;
+        num_small := num_large;
+        num_large := num_temp;
+        dbms_output.put_line('The small numer is '||num_small);
+        dbms_output.put_line('The large numer is '||num_large);
+    ELSE
+        dbms_output.put_line('The small numer is '||num_small);
+        dbms_output.put_line('The large numer is '||num_large);
+    END IF;
+END;
