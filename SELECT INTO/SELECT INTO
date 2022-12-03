@@ -1,0 +1,19 @@
+SELECT INTO – learn how to fetch a single row from a table into variables.
+
+SET SERVEROUTPUT ON
+DECLARE
+stdname varchar2(20);
+rno number(3);
+BEGIN
+select sname,rollno into stdname,rno from student where rollno=501;
+dbms_output.put_line('The student '||stdname||' roll number is 19K61A0'||rno);
+END;
+
+SET SERVEROUTPUT ON
+DECLARE
+rno number(3):= &rollno;
+stdname varchar2(20);
+BEGIN
+select sname into stdname from student where rollno=rno;
+dbms_output.put_line('The student '||stdname||' roll number is 19K61A0'||rno);
+END;
