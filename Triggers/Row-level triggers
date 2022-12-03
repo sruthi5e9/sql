@@ -1,0 +1,13 @@
+Row-level triggers – show you how to use row-level triggers for data-related activities.
+
+The row level triggers are used to process or give the condition row by row rather than giving condition for the transaction. 
+So for this kind of processing you require to deal with Old and new values of the table. 
+The oracle engine is using the qualifiers named :Old and :New to retrieve and process those values. 
+
+create or replace trigger T1_Row_level_example
+before update —Before updating the employee table
+on Employee
+for each row
+begin
+DBMS_OUTPUT.PUT_LINE(‘Row Level trigger executed’);
+end;
