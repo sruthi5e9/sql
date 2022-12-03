@@ -1,0 +1,23 @@
+1. Physical files: Physical files contain the actual data that is stored on an iSeries system, and a description of how data is to be presented to or received from a program. 
+They contain only one record format and one or more members. 
+Records in database files can be described using either a field-level description or a record-level description. 
+A field-level description describes the fields in the record to the system. 
+Database files that are created with field-level descriptions are referred to as externally described files. 
+A record-level description describes only the length of the record, and not the contents of the record. 
+Database files that are created with record-level descriptions are referred to as program-described files. 
+This means that your ILE C/C++ program must describe the fields in the record.
+
+An ILE C/C++ program can use either externally described or program-described files. 
+If it uses an externally described file, the ILE C/C++ compiler can extract information from the externally described file, and automatically include field information
+in your program. Your program does not need to define the field information. For further information see “Using Externally Described Files in Your Programs”. 
+A physical file can have a keyed sequence access path. 
+This means that data is presented to an ILE C/C++ program in a sequence that is based on one or more key fields in the file. 
+
+2. Logical files: Logical files do not contain data. 
+They contain a description of records that are found in one or more physical files.
+A logical file is a view or representation of one or more physical files. Logical files that contain more than one format are referred to as multi-format logical files. 
+If your program processes a logical file that contains more than one record format, you can use the _Rformat() function to set the format you wish to use. 
+Some operations cannot be performed on logical files. If you open a logical file for stream file processing with open modes W, W+, WB, or WB+, the file is opened but not cleared. 
+If you open a logical file for record file processing with open modes WR or WR+, the file is opened but not cleared. Records in iSeries database files can be described using either a field-level description or a record-level description. 
+The field-level description of the record includes a description of all fields and their arrangement in this record. 
+Since the description of the fields and their arrangement is kept within a database file and not in your ILE C/C++ program, database files created with a field-level description are referred to as externally described files. 
