@@ -1,0 +1,17 @@
+CASE statements – learn how to choose one sequence of statements out of many possible sequences to execute.
+
+SET SERVEROUT ON
+DECLARE 
+   grade char(1) := '&GRADE'; 
+BEGIN 
+   CASE grade 
+      when 'A' then dbms_output.put_line('Your grade is Outstanding'); 
+      when 'B' then dbms_output.put_line('Your grade is Excellent'); 
+      when 'C' then dbms_output.put_line('Your grade is Very good'); 
+      when 'D' then dbms_output.put_line('Your grade is Average'); 
+      when 'F' then dbms_output.put_line('Your grade is Poor'); 
+      else raise CASE_NOT_FOUND;
+   END CASE; 
+   EXCEPTION WHEN CASE_NOT_FOUND THEN
+        dbms_output.put_line('No such grade');
+END;
