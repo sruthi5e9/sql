@@ -1,0 +1,30 @@
+Variables – introduce you to PL/SQL variables and shows you how to manipulate variables in programs efficiently.
+
+TAKING INPUT FROM USER::
+
+SET SERVEROUTPUT ON
+DECLARE
+a number(3):= &A;
+BEGIN
+    IF(a=10) THEN
+        dbms_output.put_line('The given number is matched '||a);
+    ELSIF(a<10) THEN 
+        dbms_output.put_line('The given number is less than 10');
+    ELSE
+        dbms_output.put_line('The given number is greater then 10');
+    END IF;
+END;
+
+TAKING INPUT IN PROGRAM::
+SET SERVEROUTPUT ON
+DECLARE
+a number(3):= 10;
+BEGIN
+    IF(a=10) THEN
+        dbms_output.put_line('The given number is matched '||a);
+    ELSIF(a<10) THEN 
+        dbms_output.put_line('The given number is less than 10');
+    ELSE
+        dbms_output.put_line('The given number is greater then 10');
+    END IF;
+END;
