@@ -1,0 +1,9 @@
+Enable triggers – describe steps to enable a trigger or all triggers of a table.
+
+SYNTAX::
+ENABLE TRIGGER [schema_name.][trigger_name] 
+ON [object_name | DATABASE | ALL SERVER]
+
+EXAMPLE::
+ENABLE TRIGGER production.trg_vw_brands 
+ON production.vw_brands
