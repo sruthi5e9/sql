@@ -1,0 +1,9 @@
+Disable triggers – show you to disable a trigger or all triggers of a table.
+
+SYNTAX::
+DISABLE TRIGGER [schema_name.][trigger_name] 
+ON [object_name | DATABASE | ALL SERVER]
+
+EXAMPLE::
+DISABLE TRIGGER production.trg_vw_brands 
+ON production.vw_brands
