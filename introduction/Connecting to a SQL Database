@@ -1,0 +1,46 @@
+To connect to Oracle Database from SQL Developer:
+
+Access the menu from which you can select SQL Developer:
+   On a Windows system: From the Start menu, select All Programs.
+        On a Linux system:
+        On Gnome: Click Application.
+        On KDE: Click K.
+Select Oracle - ORACLE_HOME.
+
+Select Application Development.
+
+Select SQL Developer.
+If this is the first time you have started SQL Developer on your system, you are prompted to enter the full path to java.exe 
+(for example, C:\jdk1.5.0\bin\java.exe). Either type the full path after the prompt or browse to it, and then press the key Enter.
+The Oracle SQL Developer window opens.
+
+In the navigation frame of the window, click Connections.
+The Connections pane appears.
+
+In the Connections pane, click the icon New Connection.
+The New/Select Database Connection window opens.
+
+In the New/Select Database Connection window, type the appropriate values in the fields Connection Name, Username, and Password.
+For security, the password characters that you type appear as asterisks.
+Near the Password field is the check box Save Password. By default, it is deselected. Oracle recommends accepting the default.
+
+In the New/Select Database Connection window, click the tab Oracle.
+The Oracle pane appears.
+
+In the Oracle pane:
+For Role, accept the default.
+For Connection Type, accept the default (Basic).
+In the fields Hostname and Port, type the appropriate values.
+Select the option SID.
+In the SID field, type the appropriate value.
+
+In the New/Select Database Connection window, click the button Test.
+The connection is tested. If the connection succeeds, the Status indicator changes from blank to Success.
+
+Description of success.gif follows
+Description of the illustration success.gif
+
+If the test succeeded, click the button Connect.
+The New/Select Database Connection window closes. The Connections pane shows the connection whose name you entered in the Connection Name field in step 7.
+You are in the SQL Developer environment.
+To exit SQL Developer, select Exit from the File menu.
