@@ -1,0 +1,52 @@
+Package specification – show you step by step how to create a package specification.
+
+PL/SQL package is a logical grouping of a related subprogram (procedure/function) into a single element. 
+A Package is compiled and stored as a database object that can be used later.
+
+PL/SQL package has two components.
+Package Specification
+Package Body
+
+Package Specification
+Package specification consists of a declaration of all the public variables, cursors, objects, procedures, functions, and exception.
+
+Below are few characteristics of the Package specification.
+
+The elements which are all declared in the specification can be accessed from outside of the package. Such elements are known as a public element.
+The package specification is a standalone element that means it can exist alone without package body.
+Whenever a package has referred an instance of the package is created for that particular session.
+After the instance is created for a session, all the package elements that are initiated in that instance are valid until the end of the session.
+Syntax
+
+CREATE [OR REPLACE] PACKAGE <package_name> 
+IS
+<sub_program and public element declaration>
+.
+.
+END <package name>
+The above syntax shows the creation of package specification.
+
+Package Body
+It consists of the definition of all the elements that are present in the package specification. 
+It can also have a definition of elements that are not declared in the specification, these elements are called private elements 
+and can be called only from inside the package.
+
+Below are characteristics of a package body.
+
+It should contain definitions for all the subprograms/cursors that have been declared in the specification.
+It can also have more subprograms or other elements that are not declared in specification. These are called private elements.
+It is a dependable object, and it depends on package specification.
+The state of the package body becomes ‘Invalid’ whenever the specification is compiled. Therefore, it needs to be recompiled each time after the compilation of specification.
+The private elements should be defined first before they are used in the package body.
+The first part of the package is the global declaration part. This includes variables, cursors and private elements (forward declaration) that is visible to the entire package.
+The last part of the package is Package initialization part that executes one time whenever a package is referred first time in the session.
+Syntax:
+
+CREATE [OR REPLACE] PACKAGE BODY <package_name>
+IS
+<global_declaration part>
+<Private element definition>
+<sub_program and public element definition>
+.
+<Package Initialization> 
+END <package_name>
