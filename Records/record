@@ -1,0 +1,12 @@
+Record – learn how to use record type to make your code more efficiently by shifting operations from field-level to record-level.
+
+create or replace procedure empdept(eno1 number:=1)
+is
+erec emp%rowtype;
+begin
+select * into erec from emp where eno=eno1;
+dbms_output.put_line(erec.eno||' '||erec.ename||'='||eno1);
+exception when others then
+dbms_output.put_line(SQLERRM);
+end;
+/
