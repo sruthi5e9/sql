@@ -1,0 +1,21 @@
+How to fix the mutating table error – learn about the mutating table error and how to fix it using a compound trigger.
+
+BEGIN 
+    -- get the lowest non-zero credit 
+    SELECT MIN (credit_limit) * 5 
+        INTO l_max_credit 
+        FROM customers
+        WHERE credit_limit > 0;
+    
+    -- check with the new credit
+    IF l_max_credit < :NEW.credit_limit 
+    THEN 
+        UPDATE customers 
+        SET credit_limit = l_max_credit 
+        WHERE customer_id = :NEW.customer_id; 
+    END IF; 
+END;
+/
+UPDATE customers
+SET credit_limit = 12500
+WHERE customer_id = 1;
