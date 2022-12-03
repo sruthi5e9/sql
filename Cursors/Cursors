@@ -1,0 +1,38 @@
+Cursor – introduce you to cursors including implicit and explicit cursors and shows you how to use them effectively to fetch data from a table.
+
+A Cursor is a SQL Server database object that is used to manipulate data in a result set on a row-by-row basis. 
+It acts as a loop just like the looping mechanism found in any other programming language like C#, VB.Net, C, C++, Java and etc. 
+We can use cursors when we want to do data manipulation operations like update, delete and etc on a SQL Server database table in a singleton fashion in other words 
+row by row.
+
+Use of the cursors
+--- -- --- -------
+You know that in relational databases, operations are made on a set of rows called as a result sets. 
+Let's take an example. In SQL Server database SELECT statement returns a set of rows called as a result set. 
+Sometimes the application logic needs to work in singleton fashion in shorts row by row basis with one row at a time rather than the entire result set at once. 
+This can be done using cursors in SQL Server.
+ 
+In any programming language, we use a loop like FOREACH, FOR, WHILE, DO WHILE to iterate through one item at a time, the cursor follows the same approach, 
+hence it might be preferred because it follows the same logic as the looping mechanism in the programming language.
+
+Declare Cursor
+------- ------ 
+Before using a cursor, you first must declare the cursor. So, in this section, we will declare variables and restore an arrangement of values.
+ 
+Open
+----
+This is the second section of the life cycle and Once a cursor has been declared, you can open it and fetch from it
+ 
+Fetch
+-----
+This is the third section of the life cycle and this is used to recover the information push by push from a cursor. 
+In short, you can fetch row by row and make multiple operations like insert, update, delete and etc on the currently active row in the cursor.
+ 
+Close
+-----
+This is the fourth section of the lifecycle. When you have finished working with a cursor, you should close the cursor. 
+This leaves some portion of the cursor and used to close a cursor.
+ 
+Deallocate
+----------
+This is the fifth and final section of the life cycle and in this section, we erase the cursor definition and discharge all the resources related to the cursor.
