@@ -1,0 +1,17 @@
+EXISTS::
+SELECT customer_id, first_name
+FROM Customers
+WHERE EXISTS (
+  SELECT order_id
+  FROM Orders
+  WHERE Orders.customer_id = Customers.customer_id
+);
+
+NOT EXISTS::
+SELECT customer_id, first_name
+FROM Customers
+WHERE NOT EXISTS (
+  SELECT order_id
+  FROM Orders
+  WHERE Orders.customer_id = Customers.customer_id
+);
