@@ -1,0 +1,29 @@
+Drop Package – illustrate how to drop a PL/SQL package.
+
+The DROP PACKAGE statement drops a stored package from the database.
+Semantics
+drop_package
+
+drop package pk_580;
+
+BODY
+
+Drops only the body of the package. If you omit this clause, then the database drops both the body and specification of the package.
+
+When you drop only the body of a package but not its specification, the database does not invalidate dependent objects.
+However, you cannot invoke a procedure or stored function declared in the package specification until you re-create the package body.
+
+schema
+
+Name of the schema containing the package. Default: your schema.
+
+package
+
+Name of the package to be dropped.
+
+The database invalidates any local objects that depend on the package specification.
+If you subsequently reference one of these objects, then the database tries to recompile the object and returns an error 
+if you have not re-created the dropped package.
+
+If any statistics types are associated with the package, then the database disassociates the statistics
+types with the FORCE clause and drops any user-defined statistics collected with the statistics types.
