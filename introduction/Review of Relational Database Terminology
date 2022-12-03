@@ -1,0 +1,14 @@
+Database: a collection of data/information, organized together in such a manner so that they can accessed easily and successfully. In a relational database, this data is organized into Tables.
+Table: a group of Records, each representing the same sort of data.
+Record: also known as a row in a Table. Each row in a table is distinct, but all share a common set of Fields. All rows have the same kind of data, but refer to unique Records.
+Field: also known as columns in a Table; (in Excel, the field names are what you would use for column headings)
+Parse: to separate out the data into appropriate columns or fields; in Excel, the function Data / Text to Columns parses the file into Records (by rows) and Fields (by columns)
+Delimiter: the character used to differentiate among the fields in a Record
+Data entry: Creating, updating, and deleting records (Insert and Update Queries): in Excel, this can be done in the spreadsheet directly or using GUI interfaces
+Sort: when the data are re-written in a specific order
+Sort keys (primary, secondary, tertiary sort keys): the fields (first, second, third ...) fields used to determine the sort order
+Selection: selecting a subset of the records; in Excel, one can use the Filters to select sets of records
+Selection criteria: the criteria for using a Filter or for use with the Excel database functions
+Filter: Complies with a data selection by "hiding" data that do not meet the stated criteria
+Query: determining the data selection and/or sort and/or any calculations to be performed on the data
+Aggregate functions in a query: as seen in the Excel database functions
