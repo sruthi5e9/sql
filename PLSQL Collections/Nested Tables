@@ -1,0 +1,44 @@
+Nested Tables – learn about nested tables.
+
+PL/SQL nested tables are similar to arrays in other programming languages, but they have some important differences. 
+First of all, nested tables can be stored in the database, where as arrays can only be used in memory. 
+This means that you can query and update nested tables using PL/SQL, and you can pass them as parameters to stored procedures.
+
+PL/SQL nested tables can be stored in the database as columns of a table, or they can be passed as parameters to stored procedures and functions. 
+When working with nested tables, you can use the following keywords:
+
+– TYPE: Used to declare a nested table type
+– IS TABLE OF: Used to create a variable or column of a nested table type
+– INDEX BY: Used to specify the index of a nested table
+– RETURN: Used to return a nested table from a function
+– CAST(): Used to convert one data type to another
+– COLLECT(): Used to create a nested table from a set of values
+– EXTEND(): Used to add an element to a nested table
+– FIRST(): Used to return the first element of a nested table
+– LAST(): Used to return the last element of a nested table
+– LIMIT(): Used to specify the maximum number of elements that can be stored in a nested table
+– PRIOR(): Used to return the element prior to the current element in a nested table
+– NEXT(): Used to return the element after the current element in a nested table
+– TRIM(): Used to remove elements from a nested table
+– EXISTS(): Used to test for the existence of an element in a nested table
+– COUNT(): Used to return the number of elements in a nested table
+
+EXAMPLE::
+---------
+DECLARE
+	TYPE stu IS TABLE OF VARCHAR2(10);
+	last_names stu;
+	total NUMBER;
+BEGIN
+	last_names := stu('PETERSON', 'LEWIS', 'THOMPSON');
+	total := last_names.COUNT;
+	dbms_output.put_line('Total distinct name: '|| total);
+	FOR i IN 1 .. total LOOP
+		FOR x IN (SELECT * FROM students WHERE LAST_NAME=last_names(i))
+		LOOP
+			dbms_output.put_line
+			('ID: '||x.student_id||' - Student: '||x.first_name||' '||x.last_name);
+		END LOOP; 
+	END LOOP;
+END;
+/
