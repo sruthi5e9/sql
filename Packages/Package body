@@ -1,0 +1,252 @@
+Package body – learn how to create a package body.
+
+desc emp;
+SELECT * FROM EMP;
+--cursors
+set serveroutput on;
+declare
+eno emp.empno%type :='&eno';
+name emp.ename%type :='&ename';
+salary emp.sal%type;
+cursor emprec is select empno,ename,sal from emp where deptno=30;
+begin
+open emprec;
+loop
+fetch emprec into eno,name,salary;
+exit when emprec%NOTFOUND;
+dbms_output.put_line(eno||'   '||name||'  '||salary);
+end loop;
+close emprec;
+end;
+
+set serveroutput on;
+declare
+eno number;
+name varchar2(20);
+ejob varchar2(20);
+salary number;
+cursor emp_cur is select empno,ename,job,sal from emp where sal>2000;
+begin
+open emp_cur;
+ loop
+fetch emp_cur into eno,name,ejob,salary;
+exit when emp_cur%NOTFOUND ;
+dbms_output.put_line(eno||'  '||name||'  '||ejob||'  '||salary);
+end loop;
+close emp_cur;
+end
+
+create or replace procedure emp_job(pjob varchar2 ,p_emprefcur in out sys_refcursor) is
+begin
+    open p_emprefcur for select empno,ename from emp where job=pjob ;
+end;
+
+set serveroutput on;
+declare 
+vempno emp.empno%type;
+vename emp.ename%type;
+vjob emp.job%type :='&JOb';
+vemprefcur sys_refcursor;
+begin
+emp_job(vjob,vemprefcur);
+loop
+fetch vemprefcur into vempno,vename;
+exit when vemprefcur%NOTFOUND ;
+dbms_output.put_line(vempno||'  '||vename);
+end loop;
+close vemprefcur;
+end;
+
+create or replace procedure empcur(eno number, p_empcur in out sys_refcursor) is
+begin
+    open p_empcur for select ename,job,sal from emp where empno=eno;
+end;
+
+set serveroutput on;
+declare
+name varchar2(20);
+ejob varchar2(20);
+eno number :='&ENumber';
+sa number;
+ s_empcur sys_refcursor;
+begin
+   empcur(eno,s_empcur);
+   loop
+   fetch s_empcur into name,ejob,sa;
+   exit when s_empcur%NOTFOUND;
+   end loop;
+   dbms_output.put_line(name||'   '||ejob||'  '||sa);
+   close s_empcur;
+   end;
+
+ SELECT * FROM EMP;
+
+
+
+
+--CURSOR WITH FUNCTIONS
+create or replace function edeptfun(dno in emp.deptno%type)
+return sys_refcursor
+as
+reports sys_refcursor;
+begin
+open reports for select empno,ename,sal from emp where deptno=30;
+return reports;
+end;
+
+set serveroutput on;
+declare
+ reports1 sys_refcursor;
+ eno emp.empno%type;
+ ename emp.ename%type;
+ sal emp.sal%type;
+ begin
+ reports1 := edeptfun(30);
+ loop
+ fetch reports1 into eno,ename,sal;
+ exit when reports1%NOTFOUND;
+ dbms_output.put_line(eno||'  '||ename||'   '||sal);
+ end loop;
+ close reports1;
+ end;
+
+
+
+create or replace package pkg_580 as
+    procedure findname(eno in emp.empno%type, name out emp.ename%type);
+    end pkg_580;
+    
+create or  replace package body pkg_580 as
+    procedure findname(eno in emp.empno%type, name out emp.ename%type)is 
+begin
+ select ename into name from emp where empno=eno;   
+ end findname;
+ end pkg_580;
+
+
+set serveroutput on;
+declare
+names emp.ename%type;
+begin
+pkg_580.findname(7900,names);
+dbms_output.put_line('The name of 7900 eno is'|| names);
+end;
+
+create or replace package pk_80 as
+procedure updatesal(eno in emp.empno%type,salary out emp.sal%type);
+end pk_80;
+
+create or replace package body pk_80 as
+procedure updatesal(eno in emp.empno%type,salary out emp.sal%type) is
+begin
+update emp set sal=sal+200  where empno=eno;
+select sal into salary from emp where empno=eno;
+end updatesal;
+end pk_80;
+
+set serveroutput on;
+declare
+sa emp.sal%type;
+begin
+pk_80.updatesal(7900,sa);
+dbms_output.put_line('The salary of the emp is'||sa);
+end;
+
+
+
+
+
+
+select * from emp;
+desc emp;
+
+create or  replace package pk_580 as
+procedure depti(eno in emp.empno%type, detpno out emp.deptno%type);
+function commis(eno in number,commision out emp.comm%type) return number;
+end pk_580;
+
+create or replace package body pk_580 as
+procedure depti(eno in emp.empno%type, detpno out emp.deptno%type) as
+begin
+select deptno into detpno from emp where empno=eno;
+end depti;
+
+function commis(eno in number,commision out emp.comm%type) return number is
+begin
+select comm into commision from emp where  empno=eno;
+return commision;
+end commis;
+end pk_580;
+
+
+
+
+set serveroutput on;
+declare
+c emp.comm%type;
+d emp.deptno%type;
+x number;
+begin
+x :=pk_580.commis(7900,c);
+if x = null then
+dbms_output.put_line('The commision for the employee is null');
+else
+dbms_output.put_line('The commision for employee 7900 is'||x);
+end if;
+pk_580.depti(7900,d);
+dbms_output.put_line('The department of  employee 7900 is'||d);
+end;
+
+select * from emp;
+
+
+create or replace package devisri as
+procedure findname(eno in emp.empno%type, name out emp.ename%type);
+procedure updatesal(eno in emp.empno%type,salary out emp.sal%type);
+procedure depti(eno in emp.empno%type, detpno out emp.deptno%type);
+procedure sailname(id in sailors.sid%type,name out sailors.sname%type);
+function commis(eno in number,commision out emp.comm%type) return number;
+function up_rating(id in number,ratings out number)return number;
+function age(sname in varchar2,age out number)return number;
+function hire(eno in emp.empno%type,hiredate out date)return date;
+end devisri;
+
+
+create or replace package body devisri as
+procedure findname(eno in emp.empno%type, name out emp.ename%type) is
+begin
+select ename into name from emp where empno=eno;
+end findname;
+procedure updatesal(eno in emp.empno%type,salary out emp.sal%type) as
+begin
+update emp set sal=sal+500 where empno=eno;
+select sal into salary from emp where empno=eno;
+end updatesal;
+procedure depti(eno in emp.empno%type, detpno out emp.deptno%type) is
+begin
+select deptno into detpno from emp where empno=eno;
+end depti;
+procedure sailname(id in sailors.sid%type,name out sailors.sname%type) is
+begin
+select sname into name from sailors where sid=id;
+end sailname;
+function commis(eno in number,commision out emp.comm%type) return number as
+begin
+select comm into commision from emp where empno=eno;
+return commision;
+end commis;
+function up_rating(id in number,ratings out number)return number as
+begin
+select rating into ratings from sailors where sid =id;
+return ratings;
+end up_rating;
+function age(sname in varchar2,age out number)return number as
+begin
+select  age into age from sailors where sname=sname;
+end age;
+function hire(eno in emp.empno%type,hiredate out date)return date as
+begin
+select hiredate into hiredate from emp where empno=eno;
+end;
+end     devisri;
+desc emp;
