@@ -1,0 +1,9 @@
+GROUP BY:
+create view calculations as select deptno, min(esal) as "MIN SAL", max(esal) as "MAX SAL", avg(esal) as "AVG SAL" from emp group by deptno;
+
+ORDER BY:
+SELECT rollno,sname, CONCAT('19K61A0',rollno) regid FROM student order by rollno;
+
+For fetching first row from the table::
+---------------------------------------
+select eno, ename, esal, edept from emp3 order by esal desc fetch first row only;
