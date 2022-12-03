@@ -1,0 +1,14 @@
+Handling other unhandled exceptions – show you how to use the SQLCODE and SQLERRM functions to handle other unhandled exceptions.
+
+set serveroutput on
+declare 
+enumber number:=&NUMBER;
+en emp.ename%type;
+begin
+select ename into en from emp where eno=enumber;
+dbms_output.put_line(en);
+exception 
+when no_data_found then
+dbms_output.put_line('ERROR');
+dbms_output.put_line('There is no such employee number');
+end;
