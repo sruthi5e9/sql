@@ -1,0 +1,38 @@
+Exception propagation – learn about how PL/SQL propagates an unhandled exception from the current block to its enclosing block.
+
+When an exception occurs, PL/SQL looks for an exception handler in the current block e.g., anonymous block, procedure, or function of the exception. 
+If it does not find a match, PL/SQL propagates the exception to the enclosing block of the current block.
+
+PL/SQL then attempts to handle the exception by raising it once more in the enclosing block. 
+This process continues in each successive enclosing block until there is no remaining block in which to raise the exception. 
+If there is no exception handler in all blocks, PL/SQL returns an unhandled exception to the application environment that executed the outermost PL/SQL block.
+
+DECLARE
+    e1 EXCEPTION;
+    PRAGMA exception_init (e1, -20001);
+    e2 EXCEPTION;
+    PRAGMA exception_init (e2, -20002);
+    e3 EXCEPTION;
+    PRAGMA exception_init (e2, -20003);
+    l_input NUMBER := &input_number;
+BEGIN
+    -- inner block
+    BEGIN
+        IF l_input = 1 THEN
+            raise_application_error(-20001,'Exception: the input number is 1');
+        ELSIF l_input = 2 THEN
+            raise_application_error(-20002,'Exception: the input number is 2');
+        ELSE
+            raise_application_error(-20003,'Exception: the input number is not 1 or 2');
+        END IF;
+    -- exception handling of the inner block
+    EXCEPTION
+        WHEN e1 THEN 
+            dbms_output.put_line('Handle exception when the input number is 1');
+    END;
+    -- exception handling of the outer block
+    EXCEPTION 
+        WHEN e2 THEN
+            dbms_output.put_line('Handle exception when the input number is 2');
+END;
+/
