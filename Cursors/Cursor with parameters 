@@ -1,0 +1,17 @@
+Cursor with parameters – learn how to use the cursor with parameters to fetch data according to the input arguments passed to the cursor each time it is opened.
+
+set serveroutput on;
+declare
+eno emp.empno%type :='&eno';
+name emp.ename%type :='&ename';
+salary emp.sal%type;
+cursor emprec is select empno,ename,sal from emp where deptno=10;
+begin
+open emprec;
+loop
+fetch emprec into eno,name,salary;
+exit when emprec%NOTFOUND;
+dbms_output.put_line(eno||'   '||name||'  '||salary);
+end loop;
+close emprec;
+end;
