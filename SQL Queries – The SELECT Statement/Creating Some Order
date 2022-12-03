@@ -1,0 +1,1 @@
+select empno,job,sal,sum(sal) over(partition by job) as sal_dept from emp order by job ASC;
