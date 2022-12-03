@@ -1,0 +1,26 @@
+Comments – use single-line or multi-line comments to document your code to make it more readable and maintainable.
+
+/*
+  This is a multi-line comment
+  that can span multiple lines
+*/
+
+
+--Another wayy of commenting
+/* A multi-line comment can be used as a single-line comment */
+
+
+--selecting everything 
+
+
+--Example
+
+BEGIN
+    -- single-line comment /* another comment */
+    NULL;
+    /* 
+        multi-line comment 
+        -- that has another single-line comment 
+    */
+END;
+/
