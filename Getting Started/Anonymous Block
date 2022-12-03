@@ -1,0 +1,19 @@
+Anonymous Block – explain PL/SQL anonymous blocks and shows you how to execute an anonymous block in SQL*Plus and Oracle SQL Developer tools.
+
+PL/SQL is a block-structured language whose code is organized into blocks. 
+A PL/SQL block consists of three sections: declaration, executable, and exception-handling sections. 
+In a block, the executable section is mandatory while the declaration and exception-handling sections are optional.
+A PL/SQL block has a name. 
+Functions or Procedures is an example of a named block. A named block is stored into the Oracle Database server and can be reused later.
+A block without a name is an anonymous block. 
+An anonymous block is not saved in the Oracle Database server, so it is just for one-time use. However, PL/SQL anonymous blocks can be useful for testing purposes.
+
+EXAMPLE:::::
+
+SET SERVEROUTPUT ON
+DECLARE 
+STDNAME varchar2(20);
+BEGIN
+SELECT sname into stdname from student where rollno=501;
+dbms_output.put_line('The student name is '||stdname);
+END;
