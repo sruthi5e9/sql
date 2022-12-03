@@ -1,0 +1,9 @@
+SELECT roll_no,stuid
+   CASE grade 
+      when 'A' then dbms_output.put_line('Your grade is Outstanding'); 
+      when 'B' then dbms_output.put_line('Your grade is Excellent'); 
+      when 'C' then dbms_output.put_line('Your grade is Very good'); 
+      when 'D' then dbms_output.put_line('Your grade is Average'); 
+      when 'F' then dbms_output.put_line('Your grade is Poor'); 
+      else dbms_output.put_line('No such grade'); END CASE; 
+FROM student;      
