@@ -1,0 +1,17 @@
+Cursor FOR LOOP – show you how to use the cursor FOR LOOP statement to fetch and process each row from a cursor.
+
+set serveroutput on;
+declare
+eno emp.empno%type :='&eno';
+name emp.ename%type :='&ename';
+salary emp.sal%type;
+cursor emprec is select empno,ename,sal from emp where deptno=10;
+begin
+open emprec;
+loop
+fetch emprec into eno,name,salary;
+exit when emprec%NOTFOUND;
+dbms_output.put_line(eno||'   '||name||'  '||salary);
+end loop;
+close emprec;
+end;
